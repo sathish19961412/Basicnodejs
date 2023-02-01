@@ -1,8 +1,9 @@
-var http = require('http');
-
+const http = require('http');
+const fs =require('fs');
 var server=http.createServer(function (req, res) {
    const url =req.url;
-   if(url=='/')
+   const method =req.method;
+   if(url==='/')
    {
       res.setHeader('Content-type','text/html');
       res.write('<html>');
@@ -11,6 +12,13 @@ var server=http.createServer(function (req, res) {
       res.write('</html>');
       return res.end();   
    }
+   if(url==='/message' && method=='POST')
+   {
+      fs.writeFileSync('hello.txt','Hello World');
+      res.setHeader('Location','/');
+      res.statusCode = 302;
+      return res.end();
+   }
    res.setHeader('Content-type','text/html');
    res.write('<html>');
    res.write('<head><title>Node js Training</title></head>');
@@ -18,4 +26,5 @@ var server=http.createServer(function (req, res) {
    res.write('</html>');
    res.end();
 
-}).listen(1996);
+})
+server.listen(1996);
