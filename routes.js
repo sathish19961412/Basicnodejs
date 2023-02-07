@@ -5,12 +5,12 @@
         const method =req.method;
         if(url==='/')
         {
-        res.setHeader('Content-type','text/html');
-        res.write('<html>');
-        res.write('<head><title>Node js Basic</title></head>');
-        res.write('<body><center><form  action="/message" method="POST"><input type="text" name="username"  /><input type="submit"/></form></body>');
-        res.write('</html>');
-        return res.end();   
+            res.setHeader('Content-type','text/html');
+            res.write('<html>');
+            res.write('<head><title>Node js Basic</title></head>');
+            res.write('<body><center><form  action="/message" method="POST"><input type="text" name="username"  /><input type="submit"/></form></body>');
+            res.write('</html>');
+            return res.end();   
         }
         if(url==='/message' && method=='POST')
         {
@@ -41,8 +41,18 @@
         res.end();
    };
 
-   module.exports = requestHandler;
+//    module.exports = {
+//       handler:requestHandler,
+//       someText:'Printing some Text'
+//    };
 
+//Only used Nodes Used in exports
+// exports.handler=requestHandler;
+// exports.someText='Print Some Text';
 
+//Also Used To the javascript
+
+module.exports.handler=requestHandler;
+module.exports.someText='Print Some Text';
 
    

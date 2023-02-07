@@ -1,5 +1,7 @@
+//Module File
 const http = require('http');
-const requestHandler = require('./routes');
+const route= require('./routes');
 
-var server=http.createServer(requestHandler);
+console.log(route.someText);
+var server=http.createServer(route.handler);
 server.listen(1996);
